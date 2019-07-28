@@ -15,11 +15,12 @@
     }
 
     const removeApples = () => {
+        if (appleCount === undefined) {
+            appleCount = 0;
+        }
+
         if (appleCount > 0) {
             appleCount--;
-            doWeHaveApples();
-        } else if (appleCount === undefined) {
-            appleCount = 0;
             doWeHaveApples();
         } else if (appleCount === 0) {
             console.log('You cannot remove apples you dont have!');
