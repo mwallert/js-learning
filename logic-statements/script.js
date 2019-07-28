@@ -3,9 +3,13 @@
     const addButton = document.querySelector('#add-button'),
         removeButton = document.querySelector('#remove-button');
 
-    let appleCount = 0;
+    let appleCount;
 
     const addApples = () => {
+        if (!appleCount) {
+            appleCount = 0;
+        }
+
         appleCount++;
         doWeHaveApples();
     }
@@ -14,8 +18,11 @@
         if (appleCount > 0) {
             appleCount--;
             doWeHaveApples();
-        } else {
-            console.log('You cannot remove apples you dont have!')
+        } else if (appleCount === undefined) {
+            appleCount = 0;
+            doWeHaveApples();
+        } else if (appleCount === 0) {
+            console.log('You cannot remove apples you dont have!');
         }
     }
 
@@ -25,7 +32,8 @@
         } else if (appleCount === 0) {
             console.log('We have no apples :(');
         } else {
-            console.log(`You now have a negative apple count of: ${appleCount}`);
+            console.log(`You now have a negative apple count of: ${appleCount}, returning count to 0.`);
+            appleCount = 0;
         }
     }
 
